@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from 'react'
 import Spinner from '../layout/Spinner'
 import {Link} from 'react-router-dom'
+import Repos from '../repos/Repos'
 
 
  class User extends Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.login)
+        this.props.getUserRepos(this.props.match.params.login)
     }
     
     render() {
+    console.log('Users:',this.props.user)
+
         const {name, 
             avatar_url, 
             location,
@@ -22,14 +26,15 @@ import {Link} from 'react-router-dom'
              public_repos,
              public_gists,
              hireable} = this.props.user
-        const {loading} = this.props
+
+        const {loading, repos} = this.props
         
         if(loading) return <Spinner/>;
         return (
-
+            
 
             <Fragment>
-                
+            
                 <Link to='/' className='btn btn-light'>Back To Search</Link>
                 Hireable: {''}
                 {hireable?(
@@ -67,6 +72,8 @@ import {Link} from 'react-router-dom'
                         <div className="badge badge-white">Public Repos:{public_repos}</div>
                         <div className="badge badge-dark">Public Gists:{public_gists}</div>
                 </div>
+
+                <Repos repos={repos}/>
             </Fragment>
         )
     }
