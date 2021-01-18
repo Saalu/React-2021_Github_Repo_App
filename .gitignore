@@ -7,10 +7,10 @@
 
 # testing
 /coverage
-
+webfonts
 # production
 /build
-public
+# public
 # misc
 .DS_Store
 .env.local
