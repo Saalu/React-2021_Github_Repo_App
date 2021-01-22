@@ -39,3 +39,10 @@
   margin: 40px auto;
   padding: 20px;
 }
+
+.centerItem {
+  height: 100hv;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

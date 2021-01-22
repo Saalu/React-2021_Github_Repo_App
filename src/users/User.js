@@ -1,19 +1,18 @@
-import React, { Component, Fragment } from 'react'
+import React, {  Fragment,useEffect } from 'react'
 import Spinner from '../layout/Spinner'
 import {Link} from 'react-router-dom'
 import Repos from '../repos/Repos'
 
 
- class User extends Component {
-    componentDidMount() {
-        this.props.getUser(this.props.match.params.login)
-        this.props.getUserRepos(this.props.match.params.login)
-    }
+ const User = ({user, getUser, getUserRepos,match, loading, repos}) => {
+        useEffect(() => {
+            getUser(match.params.login)
+            getUserRepos(match.params.login)
+            //eslint-disable-next-line
+        },[])
     
-    render() {
-    console.log('Users:',this.props.user)
 
-        const {name, 
+        const {
             avatar_url, 
             location,
              bio, 
@@ -25,10 +24,8 @@ import Repos from '../repos/Repos'
              following,
              public_repos,
              public_gists,
-             hireable} = this.props.user
+             hireable} = user
 
-        const {loading, repos} = this.props
-        
         if(loading) return <Spinner/>;
         return (
             
@@ -45,7 +42,7 @@ import Repos from '../repos/Repos'
                 )}
                 <div className="card grid-2">
                     <div className="all-center">
-                        <img src={avatar_url} alt="image-profile" style={{width:'150px'}}/>
+                        <img src={avatar_url} alt="profile" style={{width:'150px'}}/>
                         {/* <h1>{name}</h1> */}
                         <p>Location: {location}</p>
                     </div>
@@ -76,7 +73,6 @@ import Repos from '../repos/Repos'
                 <Repos repos={repos}/>
             </Fragment>
         )
-    }
 }
 
 export default User
