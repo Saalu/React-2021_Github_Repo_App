@@ -1,15 +1,10 @@
 import React from 'react'
-import axios from 'axios'
-import News from './News'
-function App() {
+import Blogs from './Blogs'
 
+function App() {
   return (
     <div>
-      <h2 style={{textAlign:'center',marginBottom:'20px'}}>Hooks</h2>
-    
-      <div className="">
-       <News/>
-    </div>
+      <Blogs/>
     </div>
   )
 }
